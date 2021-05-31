@@ -23,23 +23,14 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(IGNORE_ME ${CMAKE_C_COMPILER})
 
-#=======================================================================================================================
-# Output Directories.
-#=======================================================================================================================
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/output)
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/output)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/output)
+
 
 #=======================================================================================================================
 # Add build options
 #=======================================================================================================================
-option(CREATE_DOCS "Build library documentation (requires Doxygen and Graphviz/Dot to be installed)" ON)
 option(BUILD_OBJECT_LIB "Build object library (not available in Xcode)" OFF)
 option(ENABLE_COMPACT_MODE "Build library in compact mode (slower, but uses less memory)" OFF)
-option(ENABLE_UNICODE_FILENAMES "Enable handling of files with non-ASCII filenames (only relevant on Windows)" OFF)
-option(BUILD_SAMPLES "Build sample programs" ON)
-option(BUILD_TESTS "Build and run library tests" ON)
-option(BUILD_BENCHMARKS "Build and run library benchmarks" ON)
+option(ENABLE_UNICODE_FILENAMES "Enable handling of files with non-ASCII filenames (only relevant on Windows)" ON)
 option(ENABLE_COVERAGE "Enable GCC/Clang code coverage in Debug build (tests, benchmarks and samples will NOT build
 when this is enabled!)" OFF)
 
@@ -47,20 +38,3 @@ when this is enabled!)" OFF)
 # Add project subdirectories
 #=======================================================================================================================
 add_subdirectory(library)
-
-if(${CREATE_DOCS})
-    add_subdirectory(doxy)
-endif()
-
-if(${BUILD_SAMPLES})
-    add_subdirectory(examples)
-endif()
-
-if(${BUILD_TESTS})
-    add_subdirectory(tests)
-endif()
-
-if(${BUILD_BENCHMARKS})
-    add_subdirectory(benchmark)
-endif()
-

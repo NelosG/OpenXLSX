@@ -64,126 +64,126 @@ namespace OpenXLSX
      * @brief An implementation class encapsulating the properties and behaviours of a spreadsheet cell.
      */
     class OPENXLSX_EXPORT XLCell
-    {
-        friend class XLCellValue;
-        friend class XLCellIterator;
-        friend bool operator==(const XLCell& lhs, const XLCell& rhs);
+            {
+                    friend class XLCellValue;
+                    friend class XLCellIterator;
+                    friend bool operator==(const XLCell& lhs, const XLCell& rhs);
 
-    public:
-        //---------- Public Member Functions ----------//
+                    public:
+                    //---------- Public Member Functions ----------//
 
-        /**
-         * @brief Default constructor. Constructs a null object.
-         */
-        XLCell();
+                    /**
+                     * @brief Default constructor. Constructs a null object.
+                     */
+                    XLCell();
 
-        /**
-         * @brief
-         * @param cellNode
-         * @param sharedStrings
-         */
-        XLCell(const XMLNode& cellNode, XLSharedStrings* sharedStrings);
+                    /**
+                     * @brief
+                     * @param cellNode
+                     * @param sharedStrings
+                     */
+                    XLCell(const XMLNode& cellNode, XLSharedStrings* sharedStrings);
 
-        /**
-         * @brief Copy constructor
-         * @param other The XLCell object to be copied.
-         * @note The copy constructor has been deleted, as it makes no sense to copy a cell. If the objective is to
-         * copy the value, create the the target object and then use the copy assignment operator.
-         */
-        XLCell(const XLCell& other);
+                    /**
+                     * @brief Copy constructor
+                     * @param other The XLCell object to be copied.
+                     * @note The copy constructor has been deleted, as it makes no sense to copy a cell. If the objective is to
+                     * copy the value, create the the target object and then use the copy assignment operator.
+                     */
+                    XLCell(const XLCell& other);
 
-        /**
-         * @brief Move constructor
-         * @param other The XLCell object to be moved
-         * @note The move constructor has been deleted, as it makes no sense to move a cell.
-         */
-        XLCell(XLCell&& other) noexcept = default;
+                    /**
+                     * @brief Move constructor
+                     * @param other The XLCell object to be moved
+                     * @note The move constructor has been deleted, as it makes no sense to move a cell.
+                     */
+                    XLCell(XLCell&& other) noexcept = default;
 
-        /**
-         * @brief Destructor
-         * @note Using the default destructor
-         */
-        ~XLCell();
+                    /**
+                     * @brief Destructor
+                     * @note Using the default destructor
+                     */
+                    ~XLCell();
 
-        /**
-         * @brief Copy assignment operator
-         * @param other The XLCell object to be copy assigned
-         * @return A reference to the new object
-         * @note Copies only the cell contents, not the pointer to parent worksheet etc.
-         */
-        XLCell& operator=(const XLCell& other);
+                    /**
+                     * @brief Copy assignment operator
+                     * @param other The XLCell object to be copy assigned
+                     * @return A reference to the new object
+                     * @note Copies only the cell contents, not the pointer to parent worksheet etc.
+                     */
+                    XLCell& operator=(const XLCell& other);
 
-        /**
-         * @brief Move assignment operator [deleted]
-         * @param other The XLCell object to be move assigned
-         * @return A reference to the new object
-         * @note The move assignment constructor has been deleted, as it makes no sense to move a cell.
-         */
-        XLCell& operator=(XLCell&& other) noexcept = default;
+                    /**
+                     * @brief Move assignment operator [deleted]
+                     * @param other The XLCell object to be move assigned
+                     * @return A reference to the new object
+                     * @note The move assignment constructor has been deleted, as it makes no sense to move a cell.
+                     */
+                    XLCell& operator=(XLCell&& other) noexcept = default;
 
-        /**
-         * @brief This copy assignment operators takes a range as the argument. The purpose is to copy the range to a
-         * new location, with the target cell being the top left cell in the range.
-         * @param range The range to be copied
-         * @return A reference to the new cell object.
-         * @note Copies only the cell contents (values).
-         */
-        XLCell& operator=(const XLCellRange& range);
+                    /**
+                     * @brief This copy assignment operators takes a range as the argument. The purpose is to copy the range to a
+                     * new location, with the target cell being the top left cell in the range.
+                     * @param range The range to be copied
+                     * @return A reference to the new cell object.
+                     * @note Copies only the cell contents (values).
+                     */
+                    XLCell& operator=(const XLCellRange& range);
 
-        /**
-         * @brief
-         * @return
-         */
-        explicit operator bool() const;
+                    /**
+                     * @brief
+                     * @return
+                     */
+                    explicit operator bool() const;
 
-        /**
-         * @brief Get a reference to the XLCellValue object for the cell.
-         * @return A reference to an XLCellValue object.
-         */
-        XLCellValue value() const;
+                    /**
+                     * @brief Get a reference to the XLCellValue object for the cell.
+                     * @return A reference to an XLCellValue object.
+                     */
+                    XLCellValue value() const;
 
-        /**
-         * @brief
-         * @return
-         */
-        XLValueType valueType() const;
+                    /**
+                     * @brief
+                     * @return
+                     */
+                    XLValueType valueType() const;
 
-        /**
-         * @brief get the XLCellReference object for the cell.
-         * @return A reference to the cells' XLCellReference object.
-         */
-        XLCellReference cellReference() const;
+                    /**
+                     * @brief get the XLCellReference object for the cell.
+                     * @return A reference to the cells' XLCellReference object.
+                     */
+                    XLCellReference cellReference() const;
 
-        /**
-         * @brief
-         * @return
-         */
-        bool hasFormula() const;
+                    /**
+                     * @brief
+                     * @return
+                     */
+                    bool hasFormula() const;
 
-        /**
-         * @brief
-         * @return
-         */
-        std::string formula() const;
+                    /**
+                     * @brief
+                     * @return
+                     */
+                    std::string formula() const;
 
-        /**
-         * @brief
-         * @param newFormula
-         */
-        void setFormula(const std::string& newFormula);
+                    /**
+                     * @brief
+                     * @param newFormula
+                     */
+                    void setFormula(const std::string& newFormula);
 
-    private:
-        //---------- Private Member Functions ---------- //
-        /**
-         * @brief
-         * @param cellNode
-         */
-        void reset(const XMLNode& cellNode);
+                    private:
+                    //---------- Private Member Functions ---------- //
+                    /**
+                     * @brief
+                     * @param cellNode
+                     */
+                    void reset(const XMLNode& cellNode);
 
-        //---------- Private Member Variables ---------- //
-        std::unique_ptr<XMLNode> m_cellNode; /**< A pointer to the root XMLNode for the cell. */
-        XLSharedStrings*         m_sharedStrings;
-    };
+                    //---------- Private Member Variables ---------- //
+                    std::unique_ptr<XMLNode> m_cellNode; /**< A pointer to the root XMLNode for the cell. */
+                    XLSharedStrings*         m_sharedStrings;
+            };
 
     /**
      * @brief
