@@ -109,6 +109,9 @@ namespace OpenXLSX
          * @return A reference to the new object.
          */
         XLXmlFile& operator=(XLXmlFile&& other) noexcept = default;
+		
+		XLXmlData *get_Data() { return m_xmlData; }
+		
 
     protected:    // ===== PROTECTED MEMBER FUNCTIONS
         /**
